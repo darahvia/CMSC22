@@ -26,5 +26,7 @@ public class Lab1{
 
         System.out.println("Chicken number 3 is named " + chicken_3.name);
         System.out.println("Chicken number 2 static variable " + Chicken.NUMBER_OF_CHICKEN);
+
+        chicken_name.close()
     }
 }
