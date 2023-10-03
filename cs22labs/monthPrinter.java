@@ -1,9 +1,11 @@
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.DayOfWeek;
 import java.time.YearMonth;
 
-public class monthPrimer {
+
+public class monthPrinter {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         int month, year;
@@ -30,19 +32,22 @@ public class monthPrimer {
             }
         } 
 
-    String[] monthNames =  {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-    System.out.println(monthNames[month - 1] + ", " + year);
-
     LocalDate date = LocalDate.of(year, month, 1); 
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, yyyy");
+    String formattedDate = date.format(formatter);
+
     DayOfWeek dayOfWeek = date.getDayOfWeek();      // Use the getDayOfWeek() method to get the day of the week that the month starts
-    YearMonth yearMonth= YearMonth.of(year, month);
-    int numberOfDaysInMonth = yearMonth.lengthOfMonth();
+    YearMonth inputDate= YearMonth.of(year, month); 
     
-    // printing of days of the calendar
-    System.out.println("Sun\tMon\tTue\tWed\tThu\tFri\tSat");
+    int numberOfDaysInMonth = inputDate.lengthOfMonth();        // return the number of days in the given month
+    // MAKE A CODE THAT PRINTS THE FORMAT MONTH, YEAR
+
+    // printing of days of the month 
+    System.out.println(formattedDate);
+    System.out.println("Sun\tMon\tTue\tWed\tThurs\tFri\tSat");
     int dayTracker = 0;
-    for (int i = 1; i <= dayOfWeek.getValue(); i++){
+    for (int i = 1; i <= dayOfWeek.getValue()%7; i++){
         System.out.print("\t");
         dayTracker++;
         if (dayTracker % 7 == 0){
