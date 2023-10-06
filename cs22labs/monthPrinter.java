@@ -1,9 +1,7 @@
 import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
-import java.time.DayOfWeek;
-import java.time.YearMonth;
-
+import java.time.format.DateTimeFormatter;              // for printing of MMMM, YYYY
+import java.time.DayOfWeek;                             // for finding the day of the week the month starts
 
 public class monthPrinter {
     public static void main(String[] args){
@@ -40,29 +38,32 @@ public class monthPrinter {
             }
         } 
 
-    LocalDate date = LocalDate.of(year, month, 1); 
+    scanner.close();
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, yyyy");
+    LocalDate date = LocalDate.of(year, month, 1);      
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, yyyy");    
     String formattedDate = date.format(formatter);
 
-    DayOfWeek dayOfWeek = date.getDayOfWeek();              // Use the getDayOfWeek() method to get the day of the week that the month starts
-    YearMonth inputDate= YearMonth.of(year, month); 
-    
-    int numberOfDaysInMonth = inputDate.lengthOfMonth();        // return the number of days in the given month
+    DayOfWeek dayOfWeek = date.getDayOfWeek();                      // use the getDayOfWeek() method to get the day of the week that the month starts
+
+    int numberOfDaysInMonth = date.lengthOfMonth();                 // return the number of days in the given month
 
 
     // printing of days of the calendar 
-    System.out.println(formattedDate);
-    System.out.println("Sun\tMon\tTue\tWed\tThurs\tFri\tSat");
-    int dayTracker = 0;
-    for (int i = 1; i <= dayOfWeek.getValue()%7; i++){
-        System.out.print("\t");
-        dayTracker++;
+    System.out.println(formattedDate);                              // prints Month, Year
+    System.out.println("Sun\tMon\tTue\tWed\tThurs\tFri\tSat");    // prints days of the week
+
+    int dayTracker = 0;                                             //used for alignment of numbers
+
+    for (int i = 0; i < dayOfWeek.getValue()%7; i++){               // Sun - 0, Mon - 1, Tue - 2, Wed - 3, Thurs - 4, Fri - 5, Sat - 6
+        System.out.print("\t");                                   // puts spaces until the day of the week the month starts
+        dayTracker++;               
         if (dayTracker % 7 == 0){
             System.out.println();
         }
     }
-    for (int day = 1; day <= numberOfDaysInMonth; day++){
+    for (int day = 1; day <= numberOfDaysInMonth; day++){           // starting from the end of the spaces, start the 1
         System.out.print(day + "\t");
         dayTracker++;
         if (dayTracker % 7 == 0){
