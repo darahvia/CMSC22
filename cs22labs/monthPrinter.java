@@ -27,7 +27,7 @@ public class monthPrinter {
             System.out.print("Enter year Number (1-10000): ");
             if (scanner.hasNextInt()){
                 year = scanner.nextInt();
-                if (year >= 1 && month <= 10000){
+                if (year >= 1 && year <= 10000){
                     break;
                 }else{
                     System.out.println("Not within 1-10000. Enter Again");
@@ -42,7 +42,8 @@ public class monthPrinter {
 
     LocalDate date = LocalDate.of(year, month, 1);      
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, yyyy");    
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, yyyy");   
+     
     String formattedDate = date.format(formatter);
 
     DayOfWeek dayOfWeek = date.getDayOfWeek();                      // use the getDayOfWeek() method to get the day of the week that the month starts
