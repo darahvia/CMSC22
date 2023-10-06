@@ -11,24 +11,32 @@ public class monthPrinter {
         int month, year;
 
         while(true){
-            System.out.print("Enter a month (1-12): ");
+            System.out.print("Enter month number (1-12): ");
             if (scanner.hasNextInt()) {
                 month = scanner.nextInt();
                 if (month >= 1 && month <= 12){
                     break;
+                }else{
+                    System.out.println("Not within 1-12. Enter Again");
                 }
             }else{
-                System.out.println("Invalid month. Enter Again.");
+                System.out.println("Invalid input. Enter Again.");
+                scanner.nextLine();         //discards the noninteger input from the input stream
             }
         }
 
         while(true){
-            System.out.print("Enter a year: ");
+            System.out.print("Enter year Number (1-10000): ");
             if (scanner.hasNextInt()){
                 year = scanner.nextInt();
-                break;
+                if (year >= 1 && month <= 10000){
+                    break;
+                }else{
+                    System.out.println("Not within 1-10000. Enter Again");
+                }
             }else{
                 System.out.println("Invalid year. Enter Again.");
+                scanner.nextLine();
             }
         } 
 
@@ -37,13 +45,13 @@ public class monthPrinter {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, yyyy");
     String formattedDate = date.format(formatter);
 
-    DayOfWeek dayOfWeek = date.getDayOfWeek();      // Use the getDayOfWeek() method to get the day of the week that the month starts
+    DayOfWeek dayOfWeek = date.getDayOfWeek();              // Use the getDayOfWeek() method to get the day of the week that the month starts
     YearMonth inputDate= YearMonth.of(year, month); 
     
     int numberOfDaysInMonth = inputDate.lengthOfMonth();        // return the number of days in the given month
-    // MAKE A CODE THAT PRINTS THE FORMAT MONTH, YEAR
 
-    // printing of days of the month 
+
+    // printing of days of the calendar 
     System.out.println(formattedDate);
     System.out.println("Sun\tMon\tTue\tWed\tThurs\tFri\tSat");
     int dayTracker = 0;
